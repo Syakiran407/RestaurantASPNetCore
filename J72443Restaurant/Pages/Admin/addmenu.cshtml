@@ -1,0 +1,40 @@
+﻿@page
+@model J72443Restaurant.addmenuModel
+@{
+    ViewData["Title"] = "addmenu";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+<div id="addMenu">
+
+    <h2>Add Menu Page</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All"></div>
+        <table class="blueTable">
+            <thead>
+                <tr>
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Upload Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row" data-label="Food Name"><input asp-for="food.FoodName"></td>
+                    <td data-label="Price"><input asp-for="food.Price"></td>
+                    <td data-label="Description"><input asp-for="food.Description"></td>
+                    <td data-label="Upload Photo">
+                        <input type="file" name="Pic" />
+                    </td>
+                    <td data-label="Submit"><input type="submit" /></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </form>
+
+</div>
+
+

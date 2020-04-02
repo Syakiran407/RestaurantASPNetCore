@@ -9,18 +9,19 @@
 
     <link rel="stylesheet" href="~/css/style.css" />
     <script>
-            function openSlideMenu() {
-                document.getElementById('menu').style.width = '250px';
-                document.getElementById('content').style.marginLeft = '250px';
-            }
-            function closeSlideMenu() {
-                document.getElementById('menu').style.width = '0';
-                document.getElementById('content').style.marginLeft = '0';
-            }
+        function openSlideMenu() {
+            document.getElementById('menu').style.width = '250px';
+            document.getElementById('content').style.marginLeft = '250px';
+        }
+        function closeSlideMenu() {
+            document.getElementById('menu').style.width = '0';
+            document.getElementById('content').style.marginLeft = '0';
+        }
     </script>
 
 </head>
-<body>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+<body class="homePage addMenuPage">
 
     <div id="content">
 
@@ -34,9 +35,10 @@
             <a href="#" class="close" onclick="closeSlideMenu()">
                 <i class="fas fa-times"></i>
             </a>
-            <a href="Index">Home</a>
-            <a href="Contact">Contact</a>
-            <a href="Menus">Menus</a>
+            <a asp-page="/Index">Home</a>
+            <a asp-page="/Contact">Contact</a>
+            <a asp-page="/Admin/addmenu">Add Menu</a>
+            <a asp-page="/menuList">Our Menu</a>
         </div>
     </div>
 
@@ -64,7 +66,7 @@
             startDelay: 1000,
             showCursor: false
         });
-                    //Because I am using jQuery, I need to call the plugin from typed.min.js
+         //Because I am using jQuery, I need to call the plugin from typed.min.js
     </script>
 
     @RenderSection("Scripts", required: false)
