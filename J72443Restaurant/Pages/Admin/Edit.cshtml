@@ -1,0 +1,98 @@
+﻿@page
+@model J72443Restaurant.Pages.Admin.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<div class="main-container">
+
+
+    <h2>Edit</h2>
+
+
+    <div id="img-zoomer-box">
+        <img id="img1" src="@Url.Content("~/" + Model.food.Image)" alt="@Model.food.Image" />
+        <div id="img2"></div>
+    </div>
+
+    
+
+    <p>Menu: @Model.food.FoodName</p>
+
+    <form method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>
+                    <label>Name: </label>
+                    <div>
+                        <input asp-for="food.ID" type="hidden" />
+                        <input asp-for="food.FoodName">
+                    </div>
+                </td>
+
+                <td>
+                    <label>Price </label>
+                    <div>
+                        <input asp-for="food.Price">
+                    </div>
+                </td>
+
+                <td>
+                    <label>Description: </label>
+                    <div>
+                        <input asp-for="food.Description">
+                    </div>
+                </td>
+
+                <td>
+                    <label>Select Image</label>
+                    <div>
+                        <input type="file" name="Pic" />
+                    </div>
+                </td>
+
+                <td>
+                    <div><button type="submit" asp-page-handler="Save">Save</button></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+<script>
+    var zoomer = function (){
+  document.getElementById('img-zoomer-box')
+    .addEventListener('mousemove', function(e) {
+
+    var original = document.getElementById('img1'),
+        magnified = document.getElementById('img2'),
+        style = magnified.style,
+        x = e.pageX - this.offsetLeft,
+        y = e.pageY - this.offsetTop,
+        imgWidth = original.width,
+        imgHeight = original.height,
+        xperc = ((x/imgWidth) * 100),
+        yperc = ((y/imgHeight) * 100);
+
+    if(x > (.01 * imgWidth)) {
+      xperc += (.15 * xperc);
+    };//lets user scroll past right edge of image
+
+    if(y >= (.01 * imgHeight)) {
+      yperc += (.15 * yperc);
+    };//lets user scroll past bottom edge of image
+
+    style.backgroundPositionX = (xperc - 9) + '%';
+    style.backgroundPositionY = (yperc - 9) + '%';
+
+    style.left = (x - 180) + 'px';
+    style.top = (y - 180) + 'px';
+
+  }, false);
+}();
+
+</script>

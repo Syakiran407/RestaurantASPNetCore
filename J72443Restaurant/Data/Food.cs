@@ -10,7 +10,7 @@ namespace J72443Restaurant.Data
     {
         [Key]
         public int ID { get; set; }
-        [Required, StringLength(30)]
+        [Required, StringLength(50)]
         public string FoodName { get; set; }
         public decimal Price { get; set; }
         [StringLength(300)]

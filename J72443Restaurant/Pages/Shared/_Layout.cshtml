@@ -1,26 +1,30 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+  <meta name="viewport" content="width=device-width" />
+  <title>@ViewBag.Title</title>
 
-    <script src="~/js/all.js"></script>
+  <script src="~/js/all.js"></script>
 
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script>
-        function openSlideMenu() {
-            document.getElementById('menu').style.width = '250px';
-            document.getElementById('content').style.marginLeft = '250px';
-        }
-        function closeSlideMenu() {
-            document.getElementById('menu').style.width = '0';
-            document.getElementById('content').style.marginLeft = '0';
-        }
-    </script>
+  <link rel="stylesheet" href="~/css/style.css" />
+  <script>
+    function openSlideMenu() {
+      document.getElementById('menu').style.width = '250px';
+      document.getElementById('content').style.marginLeft = '250px';
+    }
+
+    function closeSlideMenu() {
+      document.getElementById('menu').style.width = '0';
+      document.getElementById('content').style.marginLeft = '0';
+    }
+  </script>
 
 </head>
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
 <body class="homePage addMenuPage">
 
     <div id="content">
@@ -36,26 +40,52 @@
                 <i class="fas fa-times"></i>
             </a>
             <a asp-page="/Index">Home</a>
-            <a asp-page="/Contact">Contact</a>
-            <a asp-page="/Admin/addmenu">Add Menu</a>
+            <a asp-page="/userLogin">Login</a>
+            <li class="dropdown">
+                <a href="javascript:void(0)" onclick="myFunction()" class="dropbtn">Click Me</a>
+                <div id="toggle" class="dropdown-content">
+                    <a asp-page="#">Admin</a>
+                    <a asp-page="/Admin/addmenu">Add Menu</a>
+                </div>
+            </li>
             <a asp-page="/menuList">Our Menu</a>
+            <a asp-page="/Contact">Contact</a>
         </div>
     </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("toggle");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 
     <div>
         @RenderBody()
     </div>
 
+
+
+    <div class="clear"></div>
+
     <footer>
-        <div class="footer-right">
+
+        <div class="container">
             <p>&copy; Mahmud Syakiran 2020 - Web App Assignment</p>
-        </div>
-        <div class="footer-left">
-            <a href="http://validator.w3.org/check?uri=referer">Validate-HTML</a>
-            <a href="http://jigsaw.w3.org/css-validator/check/referer">Validate-CSS</a>
-            <a asp-page="#">Admin</a>
+            <ul>
+                <li><a href="http://validator.w3.org/check?uri=referer">Validate-HTML</a></li>
+                <li><a href="http://jigsaw.w3.org/css-validator/check/referer">Validate-CSS</a></li>
+                <li> <a asp-page="#">Admin</a></li>
+
+            </ul>
         </div>
     </footer>
+
+
 
     <script src="~/js/typed.min.js"></script>
     <script>
@@ -66,10 +96,12 @@
             startDelay: 1000,
             showCursor: false
         });
-         //Because I am using jQuery, I need to call the plugin from typed.min.js
+            //Because I am using jQuery, I need to call the plugin from typed.min.js
     </script>
+
 
     @RenderSection("Scripts", required: false)
 
 </body>
+
 </html>

@@ -4,32 +4,50 @@
     ViewData["Title"] = "menuList";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h2 class="restaurantMenu">Our Restaurants Menu</h2>
 
-<div>
-    <table class="blueTable">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Price Date</th>
-                <th scope="col">Description</th>
-                <th scope="col">Photo</th>
-            </tr>
-        </thead>
 
-        @foreach (var fd in Model.food)
-        {
-            <tbody>
+    <div id="foodList" class="table-scroll main-container">
+        <h2 class="restaurantMenu">Our Restaurants Menu</h2>
+        <form method="post">
+            <table>
                 <tr>
-                    <td scope="row" data-label="Food Name">@fd.FoodName</td>
-                    <td data-label="Price">@fd.Price.ToString("C")</td>
-                    <td data-label="Description">@fd.Description</td>
-                    <td data-label="Photo">
-                        <img src="@Url.Content(fd.Image)" alt="@fd.Image"
-                    </td>
+                    <td><input asp-for="Search" placeholder="Seach Name or Description" /> <button type="submit" asp-page-handler="Search">Search</button></td>
+
                 </tr>
-            </tbody>
-        }
-    </table>
- </div>
+            </table>
+        </form>
+
+        <form method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Edit/Delete</th>
+                    </tr>
+                </thead>
+
+                @foreach (var fd in Model.food)
+                {
+                    <tbody>
+                        <tr>
+                            <td scope="row" data-label="Food Name">@fd.FoodName</td>
+                            <td data-label="Price">@fd.Price.ToString("C")</td>
+                            <td data-label="Description">@fd.Description</td>
+                            <td data-label="Photo">
+                                <img src="@Url.Content(fd.Image)" alt="@fd.Image" />
+                            </td>
+                            <td>
+                                <a asp-page="Admin/Edit" asp-route-id="@fd.ID">edit</a>
+                                <button type="submit" asp-page-handler="Delete" asp-route-id="@fd.ID">delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </form>
+    </div>

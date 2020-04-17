@@ -14,6 +14,8 @@ namespace J72443Restaurant.Pages
 
         private readonly AppDbContext _db;
         public IList<Food> food { get; private set; }
+        [BindProperty]
+        public string Search { get; set; }
         public menuListModel(AppDbContext db)
         {
             _db = db;
@@ -21,6 +23,24 @@ namespace J72443Restaurant.Pages
         public void OnGet()
         {
             food = _db.Foods.FromSql("SELECT * FROM Foods").ToList();
+        }
+
+        public IActionResult OnPost()
+        {
+            food = _db.Foods.FromSql("SELECT * FROM Foods WHERE FoodName LIKE " + "'" + Search + "%' OR FoodName LIKE" + "'%" + Search + "' OR Description LIKE '%" + Search + "%'")
+                .ToList();
+            return Page();
+        }
+
+        public async Task <IActionResult> OnPostDeleteAsync(int id)
+        {
+            var food = await _db.Foods.FindAsync(id);
+            if(food != null)
+            {
+                _db.Foods.Remove(food);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToPage();
         }
     }
 }
