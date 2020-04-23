@@ -1,0 +1,36 @@
+﻿@page
+@model J72443Restaurant.Pages.LoginModel
+@{
+    ViewData["Title"] = "userLogin";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+
+}
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+<link href="~/css/fix.css" rel="stylesheet" />
+
+<div id="userLogin">
+    <div class="container">
+        <div asp-validation-summary="All"></div>
+        <div class="form">
+            <form method="post">
+                <h1>Login</h1>
+                <label asp-for="Input.Email">Username</label>
+                <input asp-for="Input.Email" type="text" placeholder="Username" />
+                <span asp-validation-for="Input.Email"></span>
+
+                <label asp-for="Input.Password">Password</label>
+                <input asp-for="Input.Password" type="password" placeholder="Password" />
+                <span asp-validation-for="Input.Password"></span>
+
+                <!-- <input type="submit" value="Login" /> -->
+                <input type="submit" value="Login" />
+                <label id="forgotpwd">Haven't Register? <a asp-page="/Account/Register">Click Here</a></label>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script> src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"</script>

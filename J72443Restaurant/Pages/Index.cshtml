@@ -5,52 +5,71 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<div class="bgimg-1">
-    <div class="caption">
-        <div class="titleMessage">
-            <div class="heading caption">
-                <span class="main border">HALAL RESTAURANT</span>
-                <p class="sub typed"></p>
+<div id="container">
+    <div id="main">
+
+
+        <div class="bgimg-1">
+            <div class="caption">
+                <div class="titleMessage">
+                    <div class="heading caption">
+                        <span class="main border">HALAL RESTAURANT</span>
+                        <p class="sub typed"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-1">
+            <h3>Restaurant Menus </h3>
+            <br />
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+
+        <div class="bgimg-2">
+            <div class="caption">
+                <span class="border">FREE DELIVERY</span>
+            </div>
+        </div>
+
+        <div class="article-2">
+            <div class="caption-2">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+            </div>
+        </div>
+
+        <div class="bgimg-3">
+            <div class="caption">
+                <span class="border">BEST IN TOWN</span>
+            </div>
+        </div>
+
+        <div class="article-3">
+            <div class="caption-3">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+            </div>
+        </div>
+
+        <div class="bgimg-1">
+            <div class="caption">
+                <span class="border">VISIT OUR STORE!</span>
             </div>
         </div>
     </div>
 </div>
 
-<div class="article-1">
-    <h3>Restaurant Menus </h3>
-    <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-</div>
-
-<div class="bgimg-2">
-    <div class="caption">
-        <span class="border">FREE DELIVERY</span>
-    </div>
-</div>
-
-<div class="article-2">
-    <div class="caption-2">
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-    </div>
-</div>
-
-<div class="bgimg-3">
-    <div class="caption">
-        <span class="border">BEST IN TOWN</span>
-    </div>
-</div>
-
-<div class="article-3">
-    <div class="caption-3">
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-    </div>
-</div>
-
-<div class="bgimg-1">
-    <div class="caption">
-        <span class="border">VISIT OUR STORE!</span>
-    </div>
-</div>
+<script src="~/js/typed.min.js"></script>
+<script>
+        var typed = new Typed(".typed", {
+            strings: ["Best Restaurant in UK.", "Ten Times Chef's World Champion.", "Premium Meals."],
+            typeSpeed: 70,
+            loop: true,
+            startDelay: 1000,
+            showCursor: false
+        });
+                    //Because I am using jQuery, I need to call the plugin from typed.min.js
+</script>

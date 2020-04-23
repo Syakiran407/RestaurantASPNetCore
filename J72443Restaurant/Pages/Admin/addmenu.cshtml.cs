@@ -7,10 +7,13 @@ using J72443Restaurant.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace J72443Restaurant
 {
+
+    [Authorize(Roles = "Admin")]
     public class addmenuModel : PageModel
     {
         private AppDbContext _db;

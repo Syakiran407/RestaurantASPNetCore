@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 
 namespace J72443Restaurant.Data
 {
+    [Authorize]
     public class Food
     {
         [Key]

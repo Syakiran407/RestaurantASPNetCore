@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 *:before,
@@ -12,15 +14,154 @@
 html,
 body {
   height: 100%;
-  position: relative;
   overflow-x: hidden;
-  margin: 0;
-  color: #777;
-  padding: 0;
-  border: 0;
-  outline: 0;
 }
 
+#container {
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 100px;
+}
+
+#footer {
+  background-color: #111;
+  position: relative;
+  height: 100px;
+  margin-top: -100px;
+  line-height: 100px;
+  clear: both;
+}
+
+#footer ul {
+  text-align: center;
+}
+
+footer ul li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+footer a {
+  text-decoration: none;
+  color: grey;
+  float: right;
+  display: contents;
+}
+
+/*===========================================================================
+                            Navigation Section
+=============================================================================*/
+.nav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: .9;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.7s;
+}
+
+.nav a {
+  display: block;
+  padding: 20px 30px;
+  font-size: 25px;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.nav a:hover {
+  color: #fff;
+  transition: 0.4s;
+}
+
+.nav .close {
+  position: absolute;
+  top: 0;
+  right: 22px;
+  margin-left: 50px;
+  font-size: 30px
+}
+
+.slide a {
+  color: #000;
+  font-size: 36px;
+  position: fixed;
+  z-index: 1;
+}
+
+.fa-bars {
+  margin-top: 20px;
+  margin-left: 25px
+}
+
+button#logout {
+  font-size: 25px;
+  text-align: center;
+  padding: 20px 30px;
+  margin: 0px 0px 0px 3px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #ccc;
+}
+
+#displayUserName {
+  font-size: 20px;
+}
+
+.dropdown li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown li a:hover, .dropdown:hover .dropbtn {
+  background-color: #111;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #111;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  background: red;
+  color: #111;
+}
+
+.dropdown-content a:hover {
+  background: #111;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*===========================================================================
+                            Home Page Section
+=============================================================================*/
 .article-1 {
   color: #777;
   background-color: white;
@@ -65,7 +206,7 @@ body {
 
 .bgimg-1 {
   background-image: url("../images/food1.jpg");
-  min-height: 1000px;
+  min-height: 100vh;
 }
 
 .bgimg-2 {
@@ -103,48 +244,6 @@ h3 {
   text-align: center;
 }
 
-.nav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  opacity: .9;
-  overflow-x: hidden;
-  padding-top: 60px;
-  transition: 0.7s;
-}
-
-.nav a {
-  display: block;
-  padding: 20px 30px;
-  font-size: 25px;
-  text-decoration: none;
-  color: #ccc;
-}
-
-.nav a:hover {
-  color: #fff;
-  transition: 0.4s;
-}
-
-.nav .close {
-  position: absolute;
-  top: 0;
-  right: 22px;
-  margin-left: 50px;
-  font-size: 30px
-}
-
-.slide a {
-  color: #000;
-  font-size: 36px;
-  position: fixed;
-  z-index: 1;
-}
-
 .titleMessage {
   position: absolute;
   width: 100%;
@@ -160,6 +259,7 @@ h3 {
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
   font-weight: 100;
   letter-spacing: 7px;
+  padding-top: 21px;
 }
 
 .titleMessage .heading p.main {
@@ -176,75 +276,6 @@ h3 {
   width: 100%;
 }
 
-.fa-bars {
-  margin-top: 20px;
-  margin-left: 25px
-}
-
-.clear {
-  clear: both;
-}
-
-footer {
-  display: block;
-  text-align: center;
-  /* padding: 0% 5%; */
-  /* clear: both; */
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #ccc;
-}
-
-footer ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 5px;
-  margin-bottom: -5px;
-}
-
-footer a {
-  text-decoration: none;
-  color: grey;
-  float: right;
-  width: 50%;
-  display: contents;
-  line-height: 1.5px;
-}
-
-footer p {
-  float: left;
-  width: 50%;
-  margin-top: 5px;
-  color: grey;
-}
-
-/* Align Content to center */
-/*div#addMenu {
-    height: 50%;
-    width: 50%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -25%;
-}
-
-
-
-div#editMenu {
-    height: 50%;
-    width: 50%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -20%;
-    margin-left: -25%;
-    clear: both;
-    display: inline-block;
-    zoom: 1;
-    display *: inline; /* ie hack
-}*/
 /* Align Content to center */
 .main-container {
   overflow: hidden;
@@ -275,6 +306,10 @@ div#editMenu {
   width: 50%;
 }
 
+.main-container #img1 {
+  width: 100%;
+}
+
 .main-container p {
   text-align: center;
 }
@@ -283,25 +318,49 @@ div {
   clear: both;
 }
 
-/*===========================================================================
-    Login Section
-=============================================================================*/
-#userLogin .container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+
+  .bgimg-1,
+  .bgimg-2,
+  .bgimg-3 {
+    background-attachment: scroll;
+  }
 }
 
+@media only screen and (max-device-width: 449px) {
+  .caption span.border {
+    padding: 12px;
+    font-size: 13px;
+    letter-spacing: 9px;
+  }
+
+  .titleMessage .heading p.sub {
+    font-size: 18px;
+  }
+}
+
+/*===========================================================================
+                            Login Section
+=============================================================================*/
+#Register .container,
+#userLogin .container {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#Register .form,
 #userLogin .form {
-  width: 400px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   padding: 50px;
   border-radius: 20px;
   box-shadow: 0px -6px 10px white, 0px 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+#Register .form h1,
 #userLogin .form h1 {
   text-align: center;
   margin-bottom: 40px;
@@ -309,12 +368,14 @@ div {
   letter-spacing: 3px;
 }
 
+#Register .form form label,
 #userLogin .form form label {
   margin: 10px 0 0 20px;
   font-weight: 300;
   color: #868686;
 }
 
+#Register .form form label#forgotpwd,
 #userLogin .form form label#forgotpwd {
   margin: 20px;
   display: block;
@@ -322,14 +383,15 @@ div {
   font-size: 18px;
 }
 
+#Register .form form label#forgotpwd a,
 #userLogin .form form label#forgotpwd a {
   font-weight: 600;
   color: #868686;
 }
 
-#userLogin .form form input[type="text"],
-#userLogin .form form input[type="password"],
-#userLogin .form form input[type="button"] {
+#Register .form form input[type="text"], #userLogin .form form input[type="text"],
+#Register .form form input[type="password"], #userLogin .form form input[type="password"],
+#Register .form form input[type="submit"], #userLogin .form form input[type="submit"] {
   width: 100%;
   padding: 20px;
   margin: 20px 0;
@@ -342,22 +404,38 @@ div {
   color: #868686;
 }
 
+#Register .form form input:focus,
 #userLogin .form form input:focus {
   box-shadow: inset 0px -6px 10px white, inset 0px 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+#Register .form form input[type="button"],
 #userLogin .form form input[type="button"] {
   margin: 40px 0 0 0;
   font-size: 24px;
   font-weight: 400;
 }
 
+#Register .form form input[type="button"]:active,
 #userLogin .form form input[type="button"]:active {
   box-shadow: inset 0px -6px 10px white, inset 0px 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+@media only screen and (max-device-width : 568px) {
+
+  #Register .container,
+  #userLogin .container {
+    width: 100%;
+  }
+
+  #Register .form,
+  #userLogin .form {
+    box-shadow: none;
+  }
+}
+
 /*===========================================================================
-    Table Section
+                                Table Section
 =============================================================================*/
 h2 {
   text-align: center;
@@ -401,16 +479,16 @@ table th {
 }
 
 table td input {
-    /* width: 100%; */
-    padding: 6px;
-    /* margin: 20px 0; */
-    border-radius: 50px;
-    border: none;
-    outline: none;
-    /* font-size: 18px; */
-    box-shadow: 0px -2px 0px white, 0px 2px 0px rgba(0, 0, 0, 0.15);
-    background: transparent;
-    color: #868686;
+  /* width: 100%; */
+  padding: 6px;
+  /* margin: 20px 0; */
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  /* font-size: 18px; */
+  box-shadow: 0px -2px 0px white, 0px 2px 0px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  color: #868686;
 }
 
 table tr td img {
@@ -478,129 +556,59 @@ table tr td img {
 /*===========================================================================
                            End of Table Section
 =============================================================================*/
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1024px) {
-
-  .bgimg-1,
-  .bgimg-2,
-  .bgimg-3 {
-    background-attachment: scroll;
-  }
-}
-
-@media only screen and (max-device-width: 449px) {
-  .caption span.border {
-    padding: 12px;
-    font-size: 13px;
-    letter-spacing: 9px;
-  }
-
-  .titleMessage .heading p.sub {
-    font-size: 18px;
-  }
-}
-
-.dropdown li a, .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.dropdown li a:hover, .dropdown:hover .dropbtn {
-  background-color: #111;
-}
-
-li.dropdown {
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #111;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  background: red;
-  color: #111;
-}
-
-.dropdown-content a:hover {
-  background: #111;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 /*==================================================
-Zoom Image with Preview
+Dark Mode Switcher
 =====================================================*/
-
-
-
-
-
 /*==================================================
-Contact Section 
+Contact Section
 =====================================================*/
-
-
 #map {
-    height: 100%;
-    position: static !important;
+  height: 100%;
+  position: static !important;
 }
+
 .controls {
-    margin-top: 10px;
-    border: 1px solid transparent;
-    border-radius: 2px 0 0 2px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    height: 32px;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 #pac-input {
-    background-color: #fff;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 300px;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
 }
 
-    #pac-input:focus {
-        border-color: #4d90fe;
-    }
+#pac-input:focus {
+  border-color: #4d90fe;
+}
 
 .pac-container {
-    font-family: Roboto;
+  font-family: Roboto;
 }
 
 #type-selector {
-    color: #fff;
-    background-color: #4d90fe;
-    padding: 5px 11px 0px 11px;
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
 }
 
-    #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-    }
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
 
 #target {
-    width: 345px;
+  width: 345px;
 }
-

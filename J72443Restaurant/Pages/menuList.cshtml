@@ -4,50 +4,65 @@
     ViewData["Title"] = "menuList";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
+<link href="~/css/fix.css" rel="stylesheet" />
+
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
+@using Microsoft.AspNetCore.Identity
+@using J72443Restaurant.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 
-    <div id="foodList" class="table-scroll main-container">
-        <h2 class="restaurantMenu">Our Restaurants Menu</h2>
-        <form method="post">
-            <table>
+<div id="foodList" class="table-scroll main-container" >
+    <h2 class="restaurantMenu">Our Restaurants Menu</h2>
+    <form method="post">
+        <table>
+            <tr>
+                <td><input asp-for="Search" placeholder="Seach Name or Description" /> <button type="submit" asp-page-handler="Search">Search</button></td>
+
+            </tr>
+        </table>
+    </form>
+
+    <form method="post">
+        <table>
+            <thead>
                 <tr>
-                    <td><input asp-for="Search" placeholder="Seach Name or Description" /> <button type="submit" asp-page-handler="Search">Search</button></td>
-
-                </tr>
-            </table>
-        </form>
-
-        <form method="post">
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Photo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Photo</th>
+                    @if (User.IsInRole("Admin"))
+                    {
                         <th scope="col">Edit/Delete</th>
-                    </tr>
-                </thead>
+                    }
+                </tr>
+            </thead>
 
-                @foreach (var fd in Model.food)
-                {
-                    <tbody>
-                        <tr>
-                            <td scope="row" data-label="Food Name">@fd.FoodName</td>
-                            <td data-label="Price">@fd.Price.ToString("C")</td>
-                            <td data-label="Description">@fd.Description</td>
-                            <td data-label="Photo">
-                                <img src="@Url.Content(fd.Image)" alt="@fd.Image" />
-                            </td>
+            @foreach (var fd in Model.food)
+            {
+                <tbody>
+                    <tr>
+                        <td scope="row" data-label="Food Name">@fd.FoodName</td>
+                        <td data-label="Price">@fd.Price.ToString("C")</td>
+                        <td data-label="Description">@fd.Description</td>
+                        <td data-label="Photo">
+                            <img src="@Url.Content(fd.Image)" alt="@fd.Image" />
+                        </td>
+                        @if (User.IsInRole("Admin"))
+                        {
                             <td>
-                                <a asp-page="Admin/Edit" asp-route-id="@fd.ID">edit</a>
+
+                                <a asp-page="/Admin/Edit" asp-route-id="@fd.ID">edit</a>
                                 <button type="submit" asp-page-handler="Delete" asp-route-id="@fd.ID">delete</button>
+                               
                             </td>
+                        }
                         </tr>
-                    </tbody>
-                }
-            </table>
-        </form>
-    </div>
+                </tbody>
+            }
+        </table>
+    </form>
+</div>

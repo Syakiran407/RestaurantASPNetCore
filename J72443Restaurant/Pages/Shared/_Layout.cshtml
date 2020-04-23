@@ -4,26 +4,31 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width" />
-  <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
 
-  <script src="~/js/all.js"></script>
+    <script src="~/js/all.js"></script>
 
-  <link rel="stylesheet" href="~/css/style.css" />
-  <script>
-    function openSlideMenu() {
-      document.getElementById('menu').style.width = '250px';
-      document.getElementById('content').style.marginLeft = '250px';
-    }
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script>
+        function openSlideMenu() {
+            document.getElementById('menu').style.width = '250px';
+            document.getElementById('content').style.marginLeft = '250px';
+        }
 
-    function closeSlideMenu() {
-      document.getElementById('menu').style.width = '0';
-      document.getElementById('content').style.marginLeft = '0';
-    }
-  </script>
+        function closeSlideMenu() {
+            document.getElementById('menu').style.width = '0';
+            document.getElementById('content').style.marginLeft = '0';
+        }
+    </script>
 
 </head>
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity
+@using J72443Restaurant.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 
 <body class="homePage addMenuPage">
 
@@ -39,17 +44,36 @@
             <a href="#" class="close" onclick="closeSlideMenu()">
                 <i class="fas fa-times"></i>
             </a>
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a id="displayUserName">Hello @UserManager.GetUserName(User)</a>
+            }
             <a asp-page="/Index">Home</a>
-            <a asp-page="/userLogin">Login</a>
-            <li class="dropdown">
-                <a href="javascript:void(0)" onclick="myFunction()" class="dropbtn">Click Me</a>
-                <div id="toggle" class="dropdown-content">
-                    <a asp-page="#">Admin</a>
-                    <a asp-page="/Admin/addmenu">Add Menu</a>
-                </div>
-            </li>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-page="/Admin/addmenu">Add Menu</a>
+            }
             <a asp-page="/menuList">Our Menu</a>
             <a asp-page="/Contact">Contact</a>
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <button id="logout" type="submit">Logout </button>
+                </form>
+            }
+            else
+            {
+                <a asp-page="/Account/Login">Login</a>
+            }
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a>Only admin users can see this!</a>
+            }
+
         </div>
     </div>
 
@@ -68,36 +92,21 @@
         @RenderBody()
     </div>
 
-
-
     <div class="clear"></div>
 
     <footer>
 
-        <div class="container">
-            <p>&copy; Mahmud Syakiran 2020 - Web App Assignment</p>
+        <div id="footer">
             <ul>
-                <li><a href="http://validator.w3.org/check?uri=referer">Validate-HTML</a></li>
-                <li><a href="http://jigsaw.w3.org/css-validator/check/referer">Validate-CSS</a></li>
+                <li><a href="#">&copy; Mahmud Syakiran 2020 - Web App Assignment | </a></li>
+                <li><a href="http://validator.w3.org/check?uri=referer">Validate-HTML | </a></li>
+                <li><a href="http://jigsaw.w3.org/css-validator/check/referer">Validate-CSS | </a></li>
                 <li> <a asp-page="#">Admin</a></li>
 
             </ul>
         </div>
+
     </footer>
-
-
-
-    <script src="~/js/typed.min.js"></script>
-    <script>
-        var typed = new Typed(".typed", {
-            strings: ["Best Restaurant in UK.", "Ten Times Chef's World Champion.", "Premium Meals."],
-            typeSpeed: 70,
-            loop: true,
-            startDelay: 1000,
-            showCursor: false
-        });
-            //Because I am using jQuery, I need to call the plugin from typed.min.js
-    </script>
 
 
     @RenderSection("Scripts", required: false)

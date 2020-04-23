@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace J72443Restaurant.Pages
 {
-    public class userLoginModel : PageModel
+    public class AccessDeniedModel : PageModel
     {
         public void OnGet()
         {
