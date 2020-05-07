@@ -7,41 +7,43 @@
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
 <link href="~/css/fix.css" rel="stylesheet" />
-<div id="addMenu">
-
-    <div class="main-container">
 
 
-        <h2>Add Menu Page</h2>
+    <div id="addMenu">
 
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="All"></div>
+        <div class="main-container">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Food Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Upload Photo</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row" data-label="Food Name"><input asp-for="food.FoodName"></td>
-                        <td data-label="Price"><input asp-for="food.Price" inputmode="numeric"></td>
-                        <td data-label="Description"><input asp-for="food.Description"></td>
-                        <td data-label="Upload Photo">
-                            <input type="file" name="Pic" />
-                        </td>
-                        <td data-label="Submit"><input type="submit" /></td>
-                    </tr>
-                </tbody>
 
-            </table>
-        </form>
+            <h2>Add Menu Page</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All"></div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Food Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Upload Photo</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row" data-label="Food Name"><input asp-for="food.FoodName"></td>
+                            <td data-label="Price"><input asp-for="food.Price" inputmode="numeric"></td>
+                            <td data-label="Description"><input asp-for="food.Description"></td>
+                            <td data-label="Upload Photo">
+                                <input type="file" name="Pic" />
+                            </td>
+                            <td data-label="Submit"><input type="submit" /></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </form>
+        </div>
     </div>
-</div>
 
 

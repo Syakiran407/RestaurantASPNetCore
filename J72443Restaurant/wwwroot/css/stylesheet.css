@@ -1,0 +1,48 @@
+/* CSS Reset */
+* { margin: 0; padding: 0; }
+
+/* Basic Responsive Image */
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive Images with Conditional Breakpoints  */
+
+.breakpoint { /* One column for smartphones */
+  max-width: 100%;
+  display: inline-block;
+}
+@media (min-width: 420px) { /* Two columns for tablets */
+  .breakpoint {
+    max-width: 48%;
+  }
+}
+@media (min-width: 760px) { /* Four columns for large devices */
+  .breakpoint {
+    max-width: 24%;
+  }
+}
+
+
+/* Demo Page Styles: Layout */
+.indexContainer {
+  position: relative;
+  width: 96%;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.indexContainer {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+    .indexContainer img {
+        width: 960px;
+        height: 300px;
+    }
+
+
+

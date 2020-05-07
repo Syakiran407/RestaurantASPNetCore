@@ -4,8 +4,8 @@
     ViewData["Title"] = "menuList";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
-<link href="~/css/fix.css" rel="stylesheet" />
+<link href="~/css/stylesheet.css" rel="stylesheet" />
+<link href="~/css/map.css" rel="stylesheet" />
 
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -34,6 +34,11 @@
                     <th scope="col">Price</th>
                     <th scope="col">Description</th>
                     <th scope="col">Photo</th>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <th></th>
+                    }
+
                     @if (User.IsInRole("Admin"))
                     {
                         <th scope="col">Edit/Delete</th>
@@ -51,18 +56,25 @@
                         <td data-label="Photo">
                             <img src="@Url.Content(fd.Image)" alt="@fd.Image" />
                         </td>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <td>
+                                <button type="submit" asp-page-handler="Buy" asp-route-itemID="@fd.ID">Add To Cart</button>
+                            </td>
+                        }
+
                         @if (User.IsInRole("Admin"))
                         {
                             <td>
-
                                 <a asp-page="/Admin/Edit" asp-route-id="@fd.ID">edit</a>
                                 <button type="submit" asp-page-handler="Delete" asp-route-id="@fd.ID">delete</button>
-                               
                             </td>
                         }
-                        </tr>
+                    </tr>
                 </tbody>
             }
         </table>
     </form>
+
 </div>

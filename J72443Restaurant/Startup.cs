@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Stripe;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace J72443Restaurant
 {
@@ -37,6 +40,8 @@ namespace J72443Restaurant
                 options.LogoutPath = new PathString("/Index");
             });
 
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+            services.AddDirectoryBrowser();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,11 +52,50 @@ namespace J72443Restaurant
                 app.UseDeveloperExceptionPage();
             }
 
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+
             CreateRoles(serviceProvider).Wait();
             app.UseAuthentication();
             app.UseMvc();
+
+
+            // Serve my app-specific default file, if present.
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
+            app.UseDefaultFiles(options);
             app.UseStaticFiles();
-            
+            app.UseFileServer(enableDirectoryBrowsing: true);
+
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+           Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/images/uploaded_image")
+            });
+
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+           Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/images/uploaded_image")
+            });
+
+            app.UseFileServer(new FileServerOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/images/uploaded_image"),
+                EnableDirectoryBrowsing = true
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true,
+                DefaultContentType = "image/png"
+            });
         }
 
         private async Task CreateRoles(IServiceProvider serviceProvider)

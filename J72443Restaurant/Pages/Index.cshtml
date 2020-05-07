@@ -5,6 +5,15 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Microsoft.AspNetCore.Identity
+@using J72443Restaurant.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<link href="~/css/stylesheet.css" rel="stylesheet" />
+
 <div id="container">
     <div id="main">
 
@@ -21,15 +30,31 @@
         </div>
 
         <div class="article-1">
-            <h3>Restaurant Menus </h3>
+            <h3>Our Special Menus</h3>
             <br />
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                Enjoy our special menu with 20% discount for purchase $100 above! Free Medium Coca Cola with a $1 Minimum Purchase. More discounts to come. Stay tuned for our latest offer!
             </p>
-        </div>
 
+
+            <div class="indexContainer">
+
+                @foreach (var fd in Model.food)
+                {
+ 
+                    <img class="breakpoint three-columns" src="@Url.Content("~")\@fd.Image" alt="@fd.Image" />
+                   
+      
+                }
+
+            </div>
+
+            <div class="ViewAllMenu">
+                <a asp-page="/menuList">View All Menu</a>
+            </div>
+
+
+        </div>
         <div class="bgimg-2">
             <div class="caption">
                 <span class="border">FREE DELIVERY</span>
@@ -38,7 +63,7 @@
 
         <div class="article-2">
             <div class="caption-2">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <p>Free Medium Fries with a $1 Minimum Purchase.</p>
             </div>
         </div>
 
@@ -50,7 +75,7 @@
 
         <div class="article-3">
             <div class="caption-3">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <p>We also support Uber Eat! Just download Uber Eat app, enter your location, choose HALAL Restaurant, and order!.</p>
             </div>
         </div>
 
@@ -64,12 +89,12 @@
 
 <script src="~/js/typed.min.js"></script>
 <script>
-        var typed = new Typed(".typed", {
-            strings: ["Best Restaurant in UK.", "Ten Times Chef's World Champion.", "Premium Meals."],
-            typeSpeed: 70,
-            loop: true,
-            startDelay: 1000,
-            showCursor: false
-        });
+    var typed = new Typed(".typed", {
+        strings: ["Best Restaurant in UK.", "Ten Times Chef's World Champion.", "Premium Meals."],
+        typeSpeed: 70,
+        loop: true,
+        startDelay: 1000,
+        showCursor: false
+    });
                     //Because I am using jQuery, I need to call the plugin from typed.min.js
 </script>

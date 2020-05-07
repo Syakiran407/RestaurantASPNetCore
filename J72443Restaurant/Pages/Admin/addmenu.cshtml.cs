@@ -47,10 +47,6 @@ namespace J72443Restaurant
 
             return RedirectToPage("/menuList");
         }
-
-        public void OnGet()
-        {
-
-        }
+      
     }
 }

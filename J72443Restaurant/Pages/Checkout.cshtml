@@ -1,0 +1,73 @@
+﻿@page
+@model J72443Restaurant.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using J72443Restaurant.Data
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+
+<link href="~/css/map.css" rel="stylesheet" />
+
+<div id="checkout">
+    <div class="table-scroll main-container">
+
+        <h2>Checkout</h2>
+
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+
+         
+            <div class="res">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="1">Items</th>
+                            <th scope="col">QTY</th>
+                            <th scope="col">Price</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tbody>
+
+                            <tr>
+                                <td scope="row" class="book-title">@item.FoodName</td>
+                                <td data-label="Quantity" class="item-qty"><input type="number" step="1" min="0" max="100" id="quantity" value=@item.Quantity></td>
+                                <td data-label="Price" class="item-price">@item.Price.ToString("C")</td>
+                                <td><input asp-page-handler="Delete" asp-route-itemID="@item.ID" class="deletebutton" name="delete" type="submit" value="Remove"></td>
+                            </tr>
+                        </tbody>
+                    }
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td data-label="Total" colspan="2">@Model.Total.ToString("C")</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+             
+                </div>
+       
+        </form>
+
+        <br />
+
+        <form asp-page-handler="Charge" asp-route-amount="@Model.AmountPayable" method="POST">
+            <script src="//checkout.stripe.com/v2/checkout.js"
+                    class="stripe-button"
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-locale="auto"
+                    data-description="J72443 Restaurant Charge"
+                    data-amount="@Model.AmountPayable"
+                    data-currency="GBP">
+            </script>
+        </form>
+
+    </div>
+</div>

@@ -1,15 +1,16 @@
 ﻿
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
 
     <script src="~/js/all.js"></script>
 
     <link rel="stylesheet" href="~/css/style.css" />
+
     <script>
         function openSlideMenu() {
             document.getElementById('menu').style.width = '250px';
@@ -60,6 +61,12 @@
 
             @if (SignInManager.IsSignedIn(User))
             {
+                <a asp-page="/Checkout">Checkout</a>
+            }
+
+
+            @if (SignInManager.IsSignedIn(User))
+            {
                 <form asp-controller="Account" asp-action="Logout" method="post">
                     <button id="logout" type="submit">Logout </button>
                 </form>
@@ -101,7 +108,10 @@
                 <li><a href="#">&copy; Mahmud Syakiran 2020 - Web App Assignment | </a></li>
                 <li><a href="http://validator.w3.org/check?uri=referer">Validate-HTML | </a></li>
                 <li><a href="http://jigsaw.w3.org/css-validator/check/referer">Validate-CSS | </a></li>
-                <li> <a asp-page="#">Admin</a></li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li> <a asp-page="./Admin">Admin</a></li>
+                }
 
             </ul>
         </div>

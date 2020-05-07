@@ -20,4 +20,7 @@ namespace J72443Restaurant.Data
         [StringLength(100)]
         public string Image { get; set; }
     }
+
+   
+
 }
